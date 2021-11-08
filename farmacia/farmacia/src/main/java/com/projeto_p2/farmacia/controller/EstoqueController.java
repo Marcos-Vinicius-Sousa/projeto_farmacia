@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projeto_p2.farmacia.exception.AuthorizationException;
-import com.projeto_p2.farmacia.model.entities.Cliente;
-import com.projeto_p2.farmacia.service.ClienteService;
+import com.projeto_p2.farmacia.model.entities.Estoque;
+import com.projeto_p2.farmacia.service.EstoqueService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -26,37 +26,35 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @CrossOrigin()
-@RequestMapping("/cliente")
-public class ClienteController implements ControllerInterfaces<Cliente>{
-
+@RequestMapping("/estoque")
+public class EstoqueController implements ControllerInterfaces<Estoque>{
+	
 	@Autowired
-	private ClienteService service;
-	
-	
+	private EstoqueService service;
 	
 	@Override
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200",
-			description = "Retorna a lista de alunos"),
+			description = "Retorna a lista de estoques"),
 			@ApiResponse(responseCode = "403",
 			description = "Você não tem permissão para acessar este recurso"),
 			@ApiResponse(responseCode = "500",
 			description = "Foi gerada uma exceção"),
 			})
-	@Operation(summary = "Devolve a lista de todos os clientes")
+	@Operation(summary = "Devolve a lista de todos os estoques")
 	@GetMapping(produces ="application/json")
-	public ResponseEntity<List<Cliente>> getAll() {
+	public ResponseEntity<List<Estoque>> getAll() {
 		return ResponseEntity.ok(service.findAll());
 	}
 
 	@Override
-	@Operation(summary = "Devolve o aluno dado seu id")
+	@Operation(summary = "Devolve o estoque dado seu id")
 	@GetMapping(value="/{id}", produces ="application/json")
 	public ResponseEntity<?> get(@PathVariable("id") Long id) {
 		try {
-		Cliente _cliente = service.findById(id);
-		if(_cliente != null) {
-			return ResponseEntity.ok(_cliente);
+		Estoque _estoque = service.findById(id);
+		if(_estoque != null) {
+			return ResponseEntity.ok(_estoque);
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}catch (AuthorizationException e) {
@@ -66,8 +64,8 @@ public class ClienteController implements ControllerInterfaces<Cliente>{
 
 	@Override
 	@PostMapping(produces ="application/json")
-	@Operation(summary = "Grava um novo cliente")
-	public ResponseEntity<Cliente> post(@RequestBody Cliente obj) {
+	@Operation(summary = "Grava um novo estoque")
+	public ResponseEntity<Estoque> post(@RequestBody Estoque obj) {
 		service.create(obj);
 		return ResponseEntity.ok(obj);
 	}
@@ -75,8 +73,8 @@ public class ClienteController implements ControllerInterfaces<Cliente>{
 
 	@Override
 	@PutMapping(produces ="application/json")
-	@Operation(summary = "Atualiza os dados de um cliente")
-	public ResponseEntity<?> put(@RequestBody Cliente obj) {
+	@Operation(summary = "Atualiza os dados de um estoque")
+	public ResponseEntity<?> put(@RequestBody Estoque obj) {
 		if(service.update(obj)) {
 			return ResponseEntity.ok(obj);
 		}
@@ -86,7 +84,7 @@ public class ClienteController implements ControllerInterfaces<Cliente>{
 	@Override
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping(value="/{id}")
-	@Operation(summary = "Exclui um cliente")
+	@Operation(summary = "Exclui um Estoque")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		if(service.delete(id)) {
 			return ResponseEntity.ok().build();
