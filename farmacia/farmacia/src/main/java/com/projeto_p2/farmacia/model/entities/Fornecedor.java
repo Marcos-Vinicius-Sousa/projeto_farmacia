@@ -13,12 +13,43 @@ public class Fornecedor {
 	private Long cd_Fornecedor;
 	
 	private String nm_Fornecedor;
-	
 	private Long cd_Cnpj;
-	
 	private String cd_tel;
-	
 	private String email;
+	private String nm_logradouro;
+	private String cd_casa;
+	private String nm_cidade;
+	
+	
+	
+
+	public String getNm_logradouro() {
+		return nm_logradouro;
+	}
+
+	public void setNm_logradouro(String nm_logradouro) {
+		this.nm_logradouro = nm_logradouro;
+	}
+
+	public String getCd_casa() {
+		return cd_casa;
+	}
+
+	public void setCd_casa(String cd_casa) {
+		this.cd_casa = cd_casa;
+	}
+
+	public String getNm_cidade() {
+		return nm_cidade;
+	}
+
+	public void setNm_cidade(String nm_cidade) {
+		this.nm_cidade = nm_cidade;
+	}
+
+	public void setCd_Fornecedor(Long cd_Fornecedor) {
+		this.cd_Fornecedor = cd_Fornecedor;
+	}
 
 	public Long getCd_Fornecedor() {
 		return cd_Fornecedor;

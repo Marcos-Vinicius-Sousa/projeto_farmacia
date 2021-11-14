@@ -1,9 +1,11 @@
 package com.projeto_p2.farmacia.model.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Estoque {
@@ -12,6 +14,8 @@ public class Estoque {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cd_Estoque;
 	
+	@ManyToOne
+	@Column(name="id_materia")
 	private MateriaPrima materia;
 	
 	private Integer qtd_materia;

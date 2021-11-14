@@ -1,9 +1,16 @@
 package com.projeto_p2.farmacia.model.entities;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 
 @Entity
 public class MateriaPrima {
@@ -13,8 +20,45 @@ public class MateriaPrima {
 	private Long cd_MateriaPrima;
 	
 	private String nm_Materia;
-	
 	private String ds_Tipo;
+	
+	@Min(1)
+	@Max(100000)
+	private Float vl_custo;
+	
+	@Min(1)
+	@Max(100000)
+	private Float vl_venda;
+	
+	
+	
+	public Float getVl_custo() {
+		return vl_custo;
+	}
+
+	public void setVl_custo(Float vl_custo) {
+		this.vl_custo = vl_custo;
+	}
+
+	public Float getVl_venda() {
+		return vl_venda;
+	}
+
+	public void setVl_venda(Float vl_venda) {
+		this.vl_venda = vl_venda;
+	}
+
+	public List<Fornecedor> getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(List<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+
+	@ManyToMany
+	@Column(name="id_fornecedor")
+	private List<Fornecedor> fornecedores;
 
 	public Long getCd_MateriaPrima() {
 		return cd_MateriaPrima;
