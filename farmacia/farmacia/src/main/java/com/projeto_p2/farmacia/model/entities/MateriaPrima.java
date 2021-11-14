@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -29,6 +31,12 @@ public class MateriaPrima {
 	@Min(1)
 	@Max(100000)
 	private Float vl_venda;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_materia_fornecedor", 
+    joinColumns = @JoinColumn(name = "fk_materia_id"), 
+    inverseJoinColumns = @JoinColumn(name = "fk_fornecedor_id"))
+	private List<Fornecedor> fornecedores;
 	
 	
 	
@@ -56,9 +64,7 @@ public class MateriaPrima {
 		this.fornecedores = fornecedores;
 	}
 
-	@ManyToMany
-	@Column(name="id_fornecedor")
-	private List<Fornecedor> fornecedores;
+	
 
 	public Long getCd_MateriaPrima() {
 		return cd_MateriaPrima;
