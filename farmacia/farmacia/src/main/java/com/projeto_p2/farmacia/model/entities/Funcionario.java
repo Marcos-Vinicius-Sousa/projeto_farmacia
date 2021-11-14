@@ -14,6 +14,7 @@ public class Funcionario {
 	private String nm_Funcionario;
 	private Long cd_cpf;
 	private String cd_tel;
+	
 	public Long getCd_Funcionario() {
 		return cd_Funcionario;
 	}
