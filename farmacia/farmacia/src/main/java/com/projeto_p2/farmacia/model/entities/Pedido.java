@@ -27,11 +27,9 @@ public class Pedido {
 	private Long cd_Pedido;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(name="id_funcionario")
 	private Funcionario funcionario;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(name="id_cliente")
 	private Cliente cliente;
 	
 	@ManyToMany
