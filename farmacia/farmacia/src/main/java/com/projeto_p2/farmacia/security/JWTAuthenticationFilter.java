@@ -20,8 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto_p2.farmacia.model.entities.Usuario;
 import com.projeto_p2.farmacia.model.repositories.UsuarioRepository;
 import com.projeto_p2.farmacia.dto.CredenciaisDTO;
-//import com.projeto_p2.farmacia.security.JWTUtil;
-//import com.projeto_p2.farmacia.security.UserDetailsImpl;
+import com.projeto_p2.farmacia.security.JWTUtil;
+import com.projeto_p2.farmacia.security.UserDetailsImpl;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	

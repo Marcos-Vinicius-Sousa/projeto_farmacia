@@ -4,8 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Cliente.listarPorNome",
+			query="select c from Cliente c order by c.nm_cliente"),
+	@NamedQuery(name="Cliente.listarPorCidade",
+			query="select c from Cliente c where c.nm_cidade =?1")
+	
+})
 public class Cliente {
 
 	@Id
